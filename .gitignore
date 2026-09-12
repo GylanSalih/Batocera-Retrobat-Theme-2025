@@ -1,0 +1,11 @@
+# Theme-Ordner .gitignore
+
+# OS-Müll
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# Temp
+*.tmp
+*.bak
