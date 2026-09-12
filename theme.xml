@@ -1,391 +1,330 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-theme name:     Retrofix
-author:         Jiggi
-version:    	1.0
-System      	Jiggi Emulator
-GitHub:      	https://github.com/20GotoTen/es-theme-retrofix
+	Theme name:   RetroVerse (Black-2025)
+	Author:       Gylan Salih
+	Version:      2.0
+	Repo:         https://github.com/GylanSalih/RetroVerse-Batocera-Theme
+	Based on:     Retrofix by Jiggi (https://github.com/20GotoTen/es-theme-retrofix)
 -->
 
-<theme defaultView="2Row+1Banner" defaultTransition="fade & slide">
-
+<theme defaultView="2Row+1Banner" defaultTransition="fade &amp; slide">
 
 	<formatVersion>7</formatVersion>
 
-	<!-- Include Configuration Files -->
-	<include subset="music" name="Mute" displayName="${silence}">./nosounds.xml</include>
-	<include subset="music" name="On" displayName="${sysmusic}">./sounds.xml</include>
-	<include subset="music" name="Off" displayName="${nomusic}"/>
-
-	<!-- Help Icons Subset -->
-	<subset name="help-icons" displayName="Help Icons">
-		<include name="psx" displayName="PlayStation">./_inc/icons/Buttons/psx.xml</include>
-		<include name="default" displayName="Default"/>
-		<include name="arcade" displayName="Arcade">./_inc/icons/Buttons/arcade.xml</include>
-		<include name="snes" displayName="SNES">./_inc/icons/Buttons/snes.xml</include>
-		<include name="switch" displayName="Switch">./_inc/icons/Buttons/switch.xml</include>
-		<include name="xbox" displayName="Xbox">./_inc/icons/Buttons/xbox.xml</include>
-		<include name="xboxone" displayName="Xbox One">./_inc/icons/Buttons/xboxone.xml</include>
-	</subset>
-
-
-<!-- Theme Style Subsets -->
-<subset name="theme-style" displayName="Theme Style">
-
-</subset>
-
-<!-- Poster/Artwork Display Options -->
-<subset name="poster-display" displayName="Right Side Display">
-
-</subset>
-
-<!-- Character Display Options -->
-<subset name="char-display" displayName="Left Side Display">
-
-</subset>
-
-<subset name="color-scheme" displayName="Color Scheme">
-
-</subset>
-
-<subset name="animation-speed" displayName="Animation Speed">
-
-</subset>
-
-<subset name="system-info" displayName="System Info">
-
-</subset>
-
-<subset name="controller-style" displayName="Controller Display">
-
-</subset>
-
-<subset name="background-style" displayName="Background Style">
-</subset>
-
-
-<subset name="systemcarousel-style" displayName="Right-Side System Wheel">
-    <include name="default" displayName="Default (with Rotation)">./_inc/xml/systemcarousel/default.xml</include>
-    <include name="no-rounding" displayName="No Rotation">./_inc/xml/systemcarousel/right-system-column.xml</include>
-</subset>
-
-<!-- ==================================================== Settings End ==================================================== -->
-
-
-	<!-- Musikdateien im eigenen Ordner definieren -->
-	<audio name="background_music">
-		<path>../../music</path>		<!-- Benutzerdefinierte Musik (OGG-Format) -->
-	</audio>
-
+	<!-- ============================================================
+	     GLOBAL VARIABLES  (Fonts / Colors – single source of truth)
+	     ============================================================ -->
 	<variables>
+		<!-- Fonts -->
+		<fontRegular>./_inc/fonts/RedHatDisplay-Regular.ttf</fontRegular>
+		<fontMedium>./_inc/fonts/RedHatDisplay-Medium.ttf</fontMedium>
+		<fontBold>./_inc/fonts/RedHatDisplay-Bold.ttf</fontBold>
+		<fontDisplay>./_art/BebasNeue.otf</fontDisplay>
+		<fontUi>./_art/Acre.otf</fontUi>
+
+		<!-- Colors -->
+		<colText>FFFFFF</colText>
+		<colTextMuted>9B9A9A</colTextMuted>
+		<colAccent>DEEC00</colAccent>
+		<colSeparator>2A2A2A</colSeparator>
+		<colSelector>3A3A3AEE</colSelector>
+		<colSelectorEnd>1F1F1FEE</colSelectorEnd>
+		<colMenuBg>0B0B0BF2</colMenuBg>
 	</variables>
 
-	<!-- Screen view properties Akku, Uhrzeit, Controller Activity -->
+	<!-- ============================================================
+	     MUSIC SUBSET
+	     ============================================================ -->
+	<include subset="music" name="Mute" displayName="${silence}">./nosounds.xml</include>
+	<include subset="music" name="On"   displayName="${sysmusic}">./sounds.xml</include>
+	<include subset="music" name="Off"  displayName="${nomusic}"/>
+
+	<!-- ============================================================
+	     HELP ICONS SUBSET
+	     ============================================================ -->
+	<subset name="help-icons" displayName="Help Icons">
+		<include name="default" displayName="Default"/>
+		<include name="psx"     displayName="PlayStation">./_inc/icons/Buttons/psx.xml</include>
+		<include name="snes"    displayName="SNES">./_inc/icons/Buttons/snes.xml</include>
+		<include name="xbox"    displayName="Xbox">./_inc/icons/Buttons/xbox.xml</include>
+		<include name="xboxone" displayName="Xbox One">./_inc/icons/Buttons/xboxone.xml</include>
+		<include name="switch"  displayName="Switch">./_inc/icons/Buttons/switch.xml</include>
+		<include name="arcade"  displayName="Arcade">./_inc/icons/Buttons/arcade.xml</include>
+	</subset>
+
+	<!-- ============================================================
+	     SYSTEM CAROUSEL STYLE SUBSET
+	     ============================================================ -->
+	<subset name="systemcarousel-style" displayName="System Carousel">
+		<include name="default"     displayName="Default (with Rotation)">./_inc/xml/systemcarousel/default.xml</include>
+		<include name="no-rounding" displayName="No Rotation">./_inc/xml/systemcarousel/right-system-column.xml</include>
+	</subset>
+
+	<!-- ============================================================
+	     BACKGROUND MUSIC PATH
+	     ============================================================ -->
+	<audio name="background_music">
+		<path>../../music</path>
+	</audio>
+
+	<!-- ============================================================
+	     SCREEN VIEW – Top bar (clock / battery / controller)
+	     ============================================================ -->
 	<view name="screen">
 
-		<!-- Controller Activity - ganz links -->
+		<!-- Controller activity (left) -->
 		<controllerActivity name="controllerActivity">
-			<pos>0.02 0.019</pos>			<!-- Leicht nach rechts verschoben vom Rand -->
-			<size>0.072395833333333 0.017592592592593</size>
+			<pos>0.02 0.019</pos>
+			<size>0.072395833 0.017592593</size>
 			<imagePath>./_inc/gamepad.svg</imagePath>
 			<gunPath>./_inc/gun.svg</gunPath>
 			<itemSpacing>0.003</itemSpacing>
-			<color>FFFFFF90</color>
-			<activityColor>FFFFFF</activityColor>
-			<hotkeyColor>DEEC00</hotkeyColor>
+			<color>${colText}90</color>
+			<activityColor>${colText}</activityColor>
+			<hotkeyColor>${colAccent}</hotkeyColor>
 			<origin>0 0</origin>
 		</controllerActivity>
 
-		<!-- Clock/Music Display - mittig links positioniert -->
+		<!-- Clock / music display (center-left) -->
 		<text name="clock">
-			<color>FFFFFF99</color>
-			<fontSize>0.018</fontSize>
-			<fontPath>./_inc/fonts/RedHatDisplay-Regular.ttf</fontPath>
-			<pos>0.12 0.019</pos>			<!-- Links vom Battery Icon -->
-			<origin>0 0</origin>
+			<pos>0.12 0.019</pos>
 			<size>0.30 0.04</size>
+			<origin>0 0</origin>
 			<alignment>left</alignment>
+			<fontPath>${fontRegular}</fontPath>
+			<fontSize>0.018</fontSize>
+			<color>${colText}99</color>
 		</text>
 
-		<!-- Battery and Wifi icons - bleiben rechts -->
+		<!-- Battery / wifi indicator (right) -->
 		<batteryIndicator name="batteryIndicator">
 			<pos>0.96 0.019</pos>
 			<origin>1 0</origin>
-			<color>ffffff</color>
+			<color>${colText}</color>
 		</batteryIndicator>
 
 	</view>
 
-
-	<!--  Menu view properties  -->
-
+	<!-- ============================================================
+	     MENU VIEW – Modern, sleek settings menu
+	     ============================================================ -->
 	<view name="menu">
+
 		<menuText name="menutitle">
-			<fontPath>./_inc/fonts/RedHatDisplay-Medium.ttf</fontPath>
+			<fontPath>${fontMedium}</fontPath>
 			<fontSize>0.034</fontSize>
-			<color>d9d9d9</color>
+			<color>E5E5E5</color>
 		</menuText>
 
 		<menuText name="menufooter">
-			<fontPath>./_inc/fonts/RedHatDisplay-Regular.ttf</fontPath>
+			<fontPath>${fontRegular}</fontPath>
 			<fontSize>0.015</fontSize>
-			<color>777777FF</color>
+			<color>7A7A7AFF</color>
 		</menuText>
 
 		<menuText name="menutext">
-			<fontPath>./_inc/fonts/RedHatDisplay-Regular.ttf</fontPath>
+			<fontPath>${fontRegular}</fontPath>
 			<fontSize>0.025</fontSize>
-			<color>ffffff</color>
-			<separatorColor>3c3c3c</separatorColor>
-			<selectorColor>4F4F4Fff</selectorColor>
-			<selectorColorEnd>4F4F4Fff</selectorColorEnd>
+			<color>${colText}</color>
+			<separatorColor>${colSeparator}</separatorColor>
+			<selectorColor>${colSelector}</selectorColor>
+			<selectorColorEnd>${colSelectorEnd}</selectorColorEnd>
+			<selectorGradientType>horizontal</selectorGradientType>
 			<forceUppercase>false</forceUppercase>
 			<lineSpacing>4</lineSpacing>
 		</menuText>
 
 		<menuTextSmall name="menutextsmall">
-			<fontPath>./_inc/fonts/RedHatDisplay-Regular.ttf</fontPath>
+			<fontPath>${fontRegular}</fontPath>
 			<fontSize>0.02</fontSize>
-			<color>909090FF</color>
+			<color>9A9A9AFF</color>
 		</menuTextSmall>
 
 		<menuGroup name="menugroup">
-			<fontPath>./_inc/fonts/RedHatDisplay-Bold.ttf</fontPath>
+			<fontPath>${fontBold}</fontPath>
 			<fontSize>0.015</fontSize>
-			<color>ffffff</color>
-			<separatorColor>3c3c3c</separatorColor>
+			<color>${colText}</color>
+			<separatorColor>${colSeparator}</separatorColor>
 			<backgroundColor>00000000</backgroundColor>
 			<lineSpacing>2.5</lineSpacing>
 		</menuGroup>
 
 		<menuBackground name="menubg">
-			<color>000000</color>
-			<cornerSize>32 32</cornerSize>
+			<color>${colMenuBg}</color>
+			<cornerSize>24 24</cornerSize>
 		</menuBackground>
+
 	</view>
 
-
-
-
-	<!--  Hier die bilder die benutzt werdenw  -->
-
-
-	<!--  System view properties // haupt menu dots,bilder,usw  -->
-
+	<!-- ============================================================
+	     SYSTEM VIEW – Main navigation (posters, characters, controller)
+	     ============================================================ -->
 	<view name="system">
+
+		<!-- Background dot layer -->
 		<image name="background" extra="true">
 			<path>./_art/var/dot.png</path>
-			<tile>false</tile>
-
-
-
-
-
-
-
-
-
-			<size>1 1</size>
 			<pos>0 0</pos>
+			<size>1 1</size>
 			<origin>0 0</origin>
+			<tile>false</tile>
 		</image>
 
-
-
-		<!-- BILDER LINKE SEITE; BLITZ; INDICATOR-->
-				<!-- BILDER LINKE SEITE; BLITZ; INDICATOR-->
-						<!-- BILDER LINKE SEITE; BLITZ; INDICATOR-->
-								<!-- BILDER LINKE SEITE; BLITZ; INDICATOR-->
-
-								
-		<!-- bilder rechts (Poster - Hintergrund)-->
+		<!-- Right-side poster (per-system artwork) -->
 		<image name="poster" extra="true">
 			<path>./_art/posters/${system.theme}.jpg</path>
 			<path>./_art/posters/${system.theme}.png</path>
 			<path>./_art/posters/${system.theme}.jpeg</path>
 			<path>./_art/posters/${system.theme}.webp</path>
-			<tile>false</tile>
-			<origin>1 0</origin>
 			<pos>1 0</pos>
 			<size>0 1</size>
-		</image>
-
-
-
-
-
-
-		<!-- seitliche navigation links START-->
-
-
-
-
-
-
-		<!-- seitliche navigation links-->
-		<image name="indicator_bg" extra="true">
+			<origin>1 0</origin>
 			<tile>false</tile>
-			<path>./_art/indicators/blitz.svg</path>
-			<size>0 1</size>
-			<pos>0 0</pos>
 		</image>
 
-		<!-- bilder links (Charaktere - an Stelle des Blitz Indicators)-->
+		<!-- Left-side indicator bar (blitz) -->
+		<image name="indicator_bg" extra="true">
+			<path>./_art/indicators/blitz.svg</path>
+			<pos>0 0</pos>
+			<size>0 1</size>
+			<tile>false</tile>
+		</image>
+
+		<!-- Left-side character (per-system) -->
 		<image name="charsystem" extra="true">
 			<path>./_art/charsystem/${system.theme}.jpg</path>
 			<path>./_art/charsystem/${system.theme}.png</path>
 			<path>./_art/charsystem/${system.theme}.webp</path>
-			<tile>false</tile>
-			<origin>0 0</origin>
 			<pos>0 0</pos>
 			<size>0 1</size>
-		</image>
-		<!-- indicator sind doch links im menu die navigation dots-->
-		<!-- <image name="indicator" extra="true">
-			<path>./_art/indicators/${system.theme}.png</path>
+			<origin>0 0</origin>
 			<tile>false</tile>
-			<color>F8F8F8</color>
-			<origin>0 0</origin>
-			<pos>-0.002 0.15</pos>
-			<size>0 0.70</size>
-		</image> -->
+		</image>
 
-		<!-- seitliche navigation links ENDE-->
-
-
+		<!-- System headline lines (large title left) -->
 		<text name="sys_line1" extra="true">
-			<fontPath>./_art/BebasNeue.otf</fontPath>
+			<fontPath>${fontDisplay}</fontPath>
 			<alignment>left</alignment>
 			<forceUppercase>1</forceUppercase>
-			<color>FFFFFF</color>
+			<color>${colText}</color>
 		</text>
-
-		<!-- titel des systems z.b GAMEBOY COLOR links groß-->
 		<text name="sys_line2" extra="true">
-			<fontPath>./_art/BebasNeue.otf</fontPath>
+			<fontPath>${fontDisplay}</fontPath>
 			<alignment>left</alignment>
 			<forceUppercase>1</forceUppercase>
-			<color>FFFFFF</color>
+			<color>${colText}</color>
 		</text>
 
-		<!-- ganz oben über system datum und herkunft-->
+		<!-- Short description (date / origin) -->
 		<text name="shortdescription" extra="true">
-			<fontPath>./_art/Acre.otf</fontPath>
-			<alignment>left</alignment>
-			<forceUppercase>0</forceUppercase>
-			<fontSize>0.021</fontSize>
-			<color>9b9a9a</color>
-			<origin>0 0</origin>
 			<pos>0.12 0.1055</pos>
 			<size>0.320 0.033</size>
+			<origin>0 0</origin>
+			<alignment>left</alignment>
+			<fontPath>${fontUi}</fontPath>
+			<fontSize>0.021</fontSize>
+			<forceUppercase>0</forceUppercase>
+			<color>${colTextMuted}</color>
 		</text>
 
-		<!-- wie viele spiele das system besitzt -->
+		<!-- Game count -->
 		<text name="systemInfo">
-			<fontPath>./_art/Acre.otf</fontPath>
-			<alignment>left</alignment>
-			<backgroundColor>00000000</backgroundColor>
-			<forceUppercase>1</forceUppercase>
-			<color>FFFFFF</color>
-			<origin>0 0</origin>
 			<pos>0.12 0.3611</pos>
 			<size>0.200 0.039</size>
+			<origin>0 0</origin>
+			<alignment>left</alignment>
+			<fontPath>${fontUi}</fontPath>
 			<fontSize>0.0315</fontSize>
+			<forceUppercase>1</forceUppercase>
+			<backgroundColor>00000000</backgroundColor>
+			<color>${colText}</color>
 		</text>
 
-		<!-- beschreibung des systems -->
+		<!-- Long description (system lore) -->
 		<text name="longdescription" extra="true">
-			<fontPath>./_art/Acre.otf</fontPath>
-			<alignment>left</alignment>
-			<forceUppercase>0</forceUppercase>
-			<fontSize>0.021</fontSize>
-			<color>FFFFFF</color>
-			<lineSpacing>1.18</lineSpacing>
-			<origin>0 0</origin>
 			<pos>0.12 0.360</pos>
 			<size>0.28 0.20</size>
+			<origin>0 0</origin>
+			<alignment>left</alignment>
+			<fontPath>${fontUi}</fontPath>
+			<fontSize>0.021</fontSize>
+			<forceUppercase>0</forceUppercase>
+			<lineSpacing>1.18</lineSpacing>
+			<color>${colText}</color>
 		</text>
 
-		<!-- drücke taste für start -->
+		<!-- "Press A" button icon -->
 		<image name="buttonA" extra="true">
 			<path>./_art/var/button.svg</path>
-			<tile>false</tile>
-			<origin>0 0</origin>
 			<pos>0.12 0.545</pos>
 			<size>0 0.044</size>
+			<origin>0 0</origin>
+			<tile>false</tile>
 		</image>
 
-		<!-- Help System mit Button-Icons (unten rechts sichtbar, dezenter) -->
-		<!-- Die Button-Icons werden von den ausgewählten XML-Dateien gesetzt -->
+		<!-- Help system (bottom-right button hints) -->
 		<helpsystem name="help">
-			<fontPath>./_art/Acre.otf</fontPath>
-			<fontSize>0.015</fontSize>
-			<origin>1 1</origin>
 			<pos>0.99 0.99</pos>
 			<size>0.25 0.03</size>
+			<origin>1 1</origin>
+			<fontPath>${fontUi}</fontPath>
+			<fontSize>0.015</fontSize>
 			<textColor>F8F8F8CC</textColor>
 			<iconColor>F8F8F8CC</iconColor>
 			<visible>true</visible>
-			<!-- Fallback nur wenn kein Subset ausgewählt ist -->
 			<iconA ifSubset="help-icons:default">firstfile("./_inc/icons/Buttons/" + {system.theme} + "/a.png", ":/help/buttons_east.svg")</iconA>
 			<iconB ifSubset="help-icons:default">firstfile("./_inc/icons/Buttons/" + {system.theme} + "/b.png", ":/help/buttons_south.svg")</iconB>
 			<iconX ifSubset="help-icons:default">firstfile("./_inc/icons/Buttons/" + {system.theme} + "/x.png", ":/help/buttons_north.svg")</iconX>
 			<iconY ifSubset="help-icons:default">firstfile("./_inc/icons/Buttons/" + {system.theme} + "/y.png", ":/help/buttons_west.svg")</iconY>
 		</helpsystem>
 
-<!-- ==================================================== Controller Shadow and ControllerImage Start ==================================================== -->
+		<!-- Controller drop-shadow layer -->
+		<image name="controller-shadow" extra="true">
+			<path>./_art/controllers/${system.theme}.png</path>
+			<path>./_art/controllers/${system.theme}.svg</path>
+			<path>./_art/controllers/${system.theme}.webp</path>
+			<pos>0.125 0.615</pos>
+			<maxSize>0.32 0.32</maxSize>
+			<origin>0 0</origin>
+			<tile>false</tile>
+			<color>000000</color>
+			<opacity>80</opacity>
+		</image>
 
-<!-- Fake shadow -->
-<image name="controller-shadow" extra="true">
-    <path>./_art/controllers/${system.theme}.png</path>
-	<path>./_art/controllers/${system.theme}.svg</path>
-	<path>./_art/controllers/${system.theme}.webp</path>
-    <tile>false</tile>
-    <origin>0 0</origin>
-    <pos>0.125 0.615</pos> <!-- leicht versetzt -->
-    <maxSize>0.32 0.32</maxSize>
-    <color>000000</color>
-    <opacity>80</opacity>
-</image>
+		<!-- Controller image -->
+		<image name="controller" extra="true">
+			<path>./_art/controllers/${system.theme}.png</path>
+			<path>./_art/controllers/${system.theme}.svg</path>
+			<path>./_art/controllers/${system.theme}.webp</path>
+			<pos>0.12 0.61</pos>
+			<maxSize>0.32 0.32</maxSize>
+			<origin>0 0</origin>
+			<tile>false</tile>
+		</image>
 
-<!-- Original image -->
-<image name="controller" extra="true">
-    <path>./_art/controllers/${system.theme}.png</path>
-	<path>./_art/controllers/${system.theme}.svg</path>
-	<path>./_art/controllers/${system.theme}.webp</path>
-    <tile>false</tile>
-    <origin>0 0</origin>
-    <pos>0.12 0.61</pos>
-    <maxSize>0.32 0.32</maxSize>
-</image>
-<!-- ==================================================== Controller Shadow and ControllerImage End ==================================================== -->
-
-
-		<!-- damit das system logo erkennt und man damit später arbeiten kann -->
-
+		<!-- System logo (top layer) -->
 		<image name="logo">
 			<path>./_art/logos/${system.theme}.png</path>
 			<path>./_art/logos/${system.theme}.svg</path>
 			<zIndex>76</zIndex>
 		</image>
 
-
-		<!-- carousel design wird über Subset geladen -->
-		<!-- Siehe: systemcarousel-style Subset für verschiedene Stile -->
-
 	</view>
 
-	<!-- Include System-Specific Metadata - NACH der View-Definition, damit es die Standard-Werte überschreibt -->
+	<!-- ============================================================
+	     PER-SYSTEM METADATA OVERRIDE
+	     Must come AFTER the view so it can override defaults.
+	     ============================================================ -->
 	<include>./_inc/systems/metadata/${system.theme}.xml</include>
 
-	<!-- Include Gamelist Views -->
+	<!-- ============================================================
+	     GAMELIST VIEWS
+	     ============================================================ -->
 	<include>./_inc/xml/gamelistview/grid.xml</include>
 	<include>./_inc/xml/gamelistview/LeftGrid-RightInfo.xml</include>
 	<include>./_inc/xml/gamelistview/2Row-1Banner.xml</include>
 	<include>./_inc/xml/gamelistview/fullBanner.xml</include>
 	<include>./_inc/xml/gamelistview/Horizontal-Row.xml</include>
-	<include>./_inc/xml/gamelistview/view1.xml</include>
-	<include>./_inc/xml/gamelistview/view2.xml</include>
 
 </theme>
