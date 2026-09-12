@@ -23,14 +23,14 @@
 		<fontDisplay>./_art/BebasNeue.otf</fontDisplay>
 		<fontUi>./_art/Acre.otf</fontUi>
 
-		<!-- Colors -->
+		<!-- Colors – Black / White / Red scheme -->
 		<colText>FFFFFF</colText>
 		<colTextMuted>9B9A9A</colTextMuted>
-		<colAccent>DEEC00</colAccent>
-		<colSeparator>2A2A2A</colSeparator>
-		<colSelector>3A3A3AEE</colSelector>
-		<colSelectorEnd>1F1F1FEE</colSelectorEnd>
-		<colMenuBg>0B0B0BF2</colMenuBg>
+		<colAccent>E51837</colAccent>          <!-- Signal red (used for hotkey, focus tint) -->
+		<colSeparator>1F1F1F</colSeparator>
+		<colSelector>E51837EE</colSelector>    <!-- Selector start: red -->
+		<colSelectorEnd>1A0509EE</colSelectorEnd> <!-- Selector end: near-black with red hint -->
+		<colMenuBg>0A0A0AF5</colMenuBg>        <!-- Deep black, slight transparency -->
 	</variables>
 
 	<!-- ============================================================

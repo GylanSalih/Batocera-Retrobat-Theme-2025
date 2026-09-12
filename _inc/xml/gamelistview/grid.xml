@@ -4,7 +4,13 @@
 
 	<!--  Grid boxen design der einzelnen spiele properties   -->
 
-	<view name="grid">
+	<!--
+	     Multi-name view: hijack the built-in ES gamelist styles
+	     (basic / detailed / video) so they all render as our grid layout.
+	     Custom views (2Row+1Banner, Horizontal-Row, etc.) still work
+	     independently because they inherit from "grid".
+	-->
+	<view name="grid, basic, detailed, video">
 
 		<!-- Scanlines komplett deaktivieren = drecks linien über dem bild -->
 		<image name="scanlines" extra="true">
