@@ -129,8 +129,7 @@
 			<color>${colText}</color>
 			<separatorColor>${colSeparator}</separatorColor>
 			<selectorColor>${colSelector}</selectorColor>
-			<selectorColorEnd>${colSelectorEnd}</selectorColorEnd>
-			<selectorGradientType>horizontal</selectorGradientType>
+			<selectorColorEnd>${colSelector}</selectorColorEnd>
 			<forceUppercase>false</forceUppercase>
 			<lineSpacing>4</lineSpacing>
 		</menuText>
